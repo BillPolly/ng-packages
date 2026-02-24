@@ -1,0 +1,32 @@
+{
+  "name": "@ng/tools-echo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Simple echo handle for testing remote package loading",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dependencies": {
+    "@ng/handles-handle": "*"
+  },
+  "legion": {
+    "handles": {
+      "echo": {
+        "dataSourceExport": "EchoDataSource",
+        "handleExport": "EchoHandle",
+        "mode": "sync",
+        "keywords": [
+          "echo",
+          "test",
+          "debug",
+          "ping"
+        ],
+        "description": "Simple echo handle that returns what you send it"
+      }
+    },
+    "capabilities": [
+      "echo",
+      "testing"
+    ]
+  }
+}
