@@ -1,1 +1,57 @@
-/**n * EchoDataSource - Simple data source that echoes input.n * Implements the full DataSource interface for Handle compatibility.n */nnimport { BaseDataSource } from '@ng/handles-data-sources-base';nnexport class EchoDataSource extends BaseDataSource {n  constructor(options = {}) {n    super(options);n    this.resourceManager = options.resourceManager;n    this._history = [];n  }nn  /**n   * Echo a message back.n   * @param {string} message - Message to echon   * @returns {Object} Echo resultn   */n  echo(message) {n    const result = {n      input: message,n      output: message,n      timestamp: new Date().toISOString(),n      source: 'remote-package'n    };n    this._history.push(result);n    return result;n  }nn  /**n   * Get echo history.n   * @returns {Array} History of echoed messagesn   */n  history() {n    return this._history;n  }nn  /**n   * DataSource query interface.n   * @param {Object} spec - Query specificationn   * @returns {Array|Object} Query resultn   */n  query(spec) {n    if (spec?.type === 'echo') return this.echo(spec.message);n    if (spec?.type === 'history') return this.history();n    return [];n  }nn  _getSchema() {n    return {n      type: 'echo',n      description: 'Echo data source - returns what you send',n      methods: ['echo', 'history']n    };n  }n}n
+/**
+ * EchoDataSource - Simple data source that echoes input.
+ * Implements the full DataSource interface for Handle compatibility.
+ */
+
+import { BaseDataSource } from '@ng/handles-data-sources-base';
+
+export class EchoDataSource extends BaseDataSource {
+  constructor(options = {}) {
+    super(options);
+    this.resourceManager = options.resourceManager;
+    this._history = [];
+  }
+
+  /**
+   * Echo a message back.
+   * @param {string} message - Message to echo
+   * @returns {Object} Echo result
+   */
+  echo(message) {
+    const result = {
+      input: message,
+      output: message,
+      timestamp: new Date().toISOString(),
+      source: 'remote-package'
+    };
+    this._history.push(result);
+    return result;
+  }
+
+  /**
+   * Get echo history.
+   * @returns {Array} History of echoed messages
+   */
+  history() {
+    return this._history;
+  }
+
+  /**
+   * DataSource query interface.
+   * @param {Object} spec - Query specification
+   * @returns {Array|Object} Query result
+   */
+  query(spec) {
+    if (spec?.type === 'echo') return this.echo(spec.message);
+    if (spec?.type === 'history') return this.history();
+    return [];
+  }
+
+  _getSchema() {
+    return {
+      type: 'echo',
+      description: 'Echo data source - returns what you send',
+      methods: ['echo', 'history']
+    };
+  }
+}
