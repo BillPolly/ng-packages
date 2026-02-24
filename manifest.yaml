@@ -1,1 +1,6 @@
-name: ng-packagesndescription: Remote @ng/ packages for Legionncollections:n  - packagesn  - componentsn  - agentsn
+name: ng-packages
+description: Remote @ng/ packages for Legion
+collections:
+  - packages
+  - components
+  - agents
