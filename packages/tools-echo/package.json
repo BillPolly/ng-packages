@@ -1,13 +1,14 @@
 {
   "name": "@ng/tools-echo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Simple echo handle for testing remote package loading",
   "exports": {
     ".": "./src/index.js"
   },
   "dependencies": {
-    "@ng/handles-handle": "*"
+    "@ng/handles-handle": "*",
+    "@ng/handles-data-sources-base": "*"
   },
   "legion": {
     "handles": {
